@@ -1,0 +1,5 @@
+	When it comes to protected level access to the inner class, 
+yes that inner class can be accessed outside the class but only in 
+same package. 
+	protected access means that the scope of it is within the class, 
+outside the class and also outside the package by it's subclass.
