@@ -46,7 +46,7 @@ class Circle extends Shape {
     }
 }
 
-public class Main {
+public class InheritanceExample {
     public static void main(String[] args) {
         
         Square sq = new Square();
