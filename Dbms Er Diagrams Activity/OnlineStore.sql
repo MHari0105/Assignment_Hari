@@ -65,4 +65,3 @@ create table customer_order(
 	foreign key(w_code) references stocks(w_code),
 	foreign key(basket_id) references shopping_basket(basket_id)
 );
-
