@@ -69,7 +69,7 @@ on employee.fk_brId = branch.brId;
 
 -- inner join : show only the perfect matches of the table
 -- left join : first shows all the perfect matches and also shows the remaining columns of the left table
--- right join : shows thecolumns of the right table and shows all the perfect matches
+-- right join : shows the columns of the right table and shows all the perfect matches
 
 -- while seeing in venn diagram take two circles employee and branch
 -- join / inner join shows the intersected columns
@@ -86,7 +86,7 @@ group by e.empId;
 
 
 -- subqueries : query inside another query
--- 1. find the branc id of a city using wmployee table
+-- 1. find the branc id of a city using employee table
 select * from employee
 where brId = (select brId from branch where brName = "Chennai");
 
