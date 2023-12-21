@@ -9,7 +9,7 @@ public interface FacilityServiceInterface {
     public String saveFacility(Facility facility);
     public List<Facility> getAllFacilities();
     public Facility getFacilityById(String facilityId);
-    public String deleteFacility(String facilityId);
     public Facility updateFacility(String facilityId, Facility facility);
+    public String deleteFacility(String facilityId);
     
 }

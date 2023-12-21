@@ -10,7 +10,7 @@ public interface RawMaterialServiceInterface {
     public String saveMaterial(RawMaterial rawMaterial);
     public List<RawMaterial> getAllMaterial();
     public RawMaterial getById(String materialId);
-    public String deleteMaterial(String materialId);
     public RawMaterial updateMaterial(String materialId, RawMaterial material) throws MaterialNotFoundException;
+    public String deleteMaterial(String materialId);
 
 }

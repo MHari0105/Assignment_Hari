@@ -42,17 +42,6 @@ public class RawMaterialService implements RawMaterialServiceInterface {
     }
 
     @Override
-    public String deleteMaterial(String materialId) {
-        boolean deleted = false;
-        if (materialRepo.existsById(materialId)) {
-            materialRepo.deleteById(materialId);
-            deleted = true;
-        }
-        
-        return "Material id " + materialId + " deletion status : " + deleted;
-    }
-
-    @Override
     public RawMaterial updateMaterial(String materialId, RawMaterial material) throws MaterialNotFoundException {
         Optional<RawMaterial> existing = materialRepo.findById(materialId);
         RawMaterial existingMaterial = null;
@@ -73,5 +62,16 @@ public class RawMaterialService implements RawMaterialServiceInterface {
         }
 
         return existingMaterial;
+    }
+
+    @Override
+    public String deleteMaterial(String materialId) {
+        boolean deleted = false;
+        if (materialRepo.existsById(materialId)) {
+            materialRepo.deleteById(materialId);
+            deleted = true;
+        }
+        
+        return "Material id " + materialId + " deletion status : " + deleted;
     }
 }

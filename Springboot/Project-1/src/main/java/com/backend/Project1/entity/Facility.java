@@ -19,7 +19,6 @@ public class Facility {
     private String facilityId;
     private String facilityName;
     private List<String> materials;
-    private byte facilityTier;
     private List<String> supplierId;
     private String location;
     

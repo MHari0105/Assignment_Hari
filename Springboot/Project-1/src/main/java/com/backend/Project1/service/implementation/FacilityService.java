@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.backend.Project1.entity.Facility;
 import com.backend.Project1.repository.FacilityRepo;
 import com.backend.Project1.service.FacilityServiceInterface;
 
+@Service
 public class FacilityService implements FacilityServiceInterface {
 
     @Autowired
@@ -24,7 +26,6 @@ public class FacilityService implements FacilityServiceInterface {
         
         else {
             facilityRepo.save(facility);
-            checkMaterial();
             return "Facility " + facilityName + " saved";
         }
     }
@@ -40,6 +41,22 @@ public class FacilityService implements FacilityServiceInterface {
     }
 
     @Override
+    public Facility updateFacility(String facilityId, Facility facility) {
+        Optional<Facility> existing = facilityRepo.findById(facilityId);
+        Facility existingFacility = null;
+
+        if (existing.isPresent()) {
+            existingFacility = existing.get();
+            existingFacility.setFacilityName(facility.getFacilityName());
+            existingFacility.setLocation(facility.getLocation());
+
+            facilityRepo.save(existingFacility);
+        }
+        
+        return existingFacility;
+    }
+
+    @Override
     public String deleteFacility(String facilityId) {
         boolean deleted = false;
         if (facilityRepo.existsById(facilityId)) {
@@ -49,25 +66,4 @@ public class FacilityService implements FacilityServiceInterface {
         return "Facility Deletion status : " + deleted;
     }
 
-    @Override
-    public Facility updateFacility(String facilityId, Facility facility) {
-        Optional<Facility> existing = facilityRepo.findById(facilityId);
-        Facility existingFacility = null;
-
-        if (existing.isPresent()) {
-            existingFacility = existing.get();
-            existingFacility.setFacilityName(facility.getFacilityName());
-            existingFacility.setFacilityTier(facility.getFacilityTier());
-            existingFacility.setLocation(facility.getLocation());
-
-            facilityRepo.save(existingFacility);
-        }
-        
-        return existingFacility;
-    }
-
-    public void checkMaterial() {
-        // String 
-    }
-    
 }

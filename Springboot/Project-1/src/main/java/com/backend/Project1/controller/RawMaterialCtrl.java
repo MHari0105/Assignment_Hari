@@ -51,13 +51,13 @@ public class RawMaterialCtrl {
         }
     }
 
-    @DeleteMapping("/delete/{materialId}")
-    public ResponseEntity<String> deleteMaterial(@PathVariable String materialId) {
-        return new ResponseEntity<>(materialService.deleteMaterial(materialId), HttpStatus.OK);
-    }
-
     @PutMapping("/update/{materialId}")
     public ResponseEntity<RawMaterial> updateMaterial( @PathVariable String materialId, @RequestBody RawMaterial rawMaterial) throws MaterialNotFoundException {
         return new ResponseEntity<RawMaterial>(materialService.updateMaterial(materialId, rawMaterial), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{materialId}")
+    public ResponseEntity<String> deleteMaterial(@PathVariable String materialId) {
+        return new ResponseEntity<>(materialService.deleteMaterial(materialId), HttpStatus.OK);
     }
 }
