@@ -49,4 +49,8 @@ public class ProductController {
     public ResponseEntity<Product> updateProduct(@PathVariable Long prodId, @RequestBody Product product) throws NoProductFoundException {
         return new ResponseEntity<Product>(productService.updateProduct(prodId, product), HttpStatus.OK);
     }
+
+    public String authenticateAndGetToken() {
+        
+    }
 }
