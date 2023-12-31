@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mongodb.Crudapp.dto.AuthRequest;
 import com.mongodb.Crudapp.entity.Product;
 import com.mongodb.Crudapp.exception.NoProductFoundException;
+import com.mongodb.Crudapp.service.JwtService;
 import com.mongodb.Crudapp.service.ProductService;
 
 @RestController
@@ -23,7 +25,12 @@ import com.mongodb.Crudapp.service.ProductService;
 public class ProductController {
     
     @Autowired
-    ProductService productService;
+    private ProductService productService;
+
+    @Autowired
+    private JwtService jwtService;
+
+    // CRUD OPERATIONS
 
     @PostMapping("/save")
     public ResponseEntity<String> createProduct(@RequestBody Product product) {
@@ -50,7 +57,10 @@ public class ProductController {
         return new ResponseEntity<Product>(productService.updateProduct(prodId, product), HttpStatus.OK);
     }
 
-    public String authenticateAndGetToken() {
-        
+    // JWT TOKEN 
+    
+    @PostMapping("/authenticate")
+    public String authenticateAbdGetToken(@RequestBody AuthRequest authReq) {
+        return jwtService.generateToken(authReq.getUsername());
     }
 }

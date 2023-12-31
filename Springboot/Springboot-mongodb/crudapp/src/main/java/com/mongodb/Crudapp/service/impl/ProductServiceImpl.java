@@ -1,4 +1,4 @@
-package com.mongodb.Crudapp.service;
+package com.mongodb.Crudapp.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.mongodb.Crudapp.entity.Product;
 import com.mongodb.Crudapp.exception.NoProductFoundException;
 import com.mongodb.Crudapp.repository.ProductRepository;
+import com.mongodb.Crudapp.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
