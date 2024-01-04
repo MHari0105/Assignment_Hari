@@ -1,25 +1,25 @@
 package com.mongodb.Crudapp.entity;
 
-import java.util.List;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Document
 public class Product {
 
     @Id
-    private Long prodId;
+    private long prodId;
     private String name;
-    private Long prodCode;
-    private List<Double> price;
+    private Integer prodCode;
+    private double price;
     private String desc;
 
 }
