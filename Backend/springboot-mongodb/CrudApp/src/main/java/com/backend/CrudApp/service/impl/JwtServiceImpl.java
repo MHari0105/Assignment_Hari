@@ -42,4 +42,13 @@ public class JwtServiceImpl {
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder().setSigningKey(getSiginKey()).build().parseClaimsJws(token).getBody();
     }
+
+    public boolean isTokenValid(String token, UserDetails userDetails) {
+        final String username = extractUserName(token);
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+    }
+
+    private boolean isTokenExpired(String token) {
+        return extractClaim(token, Claims::getExpiration).before(new Date())
+    }
 }
