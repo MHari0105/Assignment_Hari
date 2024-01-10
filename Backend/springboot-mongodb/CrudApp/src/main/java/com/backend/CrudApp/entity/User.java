@@ -16,12 +16,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Document(collection =  "security")
 public class User implements UserDetails {
     
     @Id
-    private Integer id;
-    private String name;
+    private String id;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
 
