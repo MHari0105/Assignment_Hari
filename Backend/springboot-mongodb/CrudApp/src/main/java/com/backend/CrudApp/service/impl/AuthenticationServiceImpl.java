@@ -1,6 +1,7 @@
 package com.backend.CrudApp.service.impl;
 
 import com.backend.CrudApp.dto.JwtAuthenticationResponse;
+import com.backend.CrudApp.dto.RefreshTokenRequests;
 import com.backend.CrudApp.dto.SigninRequest;
 import com.backend.CrudApp.dto.SignupRequest;
 import com.backend.CrudApp.entity.Role;
@@ -54,6 +55,23 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         jwtAuthRes.setRefreshToken(refreshToken);
 
         return jwtAuthRes;
+    }
+
+    public JwtAuthenticationResponse refreshToken(RefreshTokenRequests refreshTokenReq) {
+        String userEmail = jwtService.extractUserName(refreshTokenReq.getToken());
+        User user = userRepo.findByEmail(userEmail).orElseThrow();
+
+        if (jwtService.isTokenValid(refreshTokenReq.getToken(), user)) {
+            var jwt = jwtService.generateToken(user);
+
+            JwtAuthenticationResponse jwtAuthRes = new JwtAuthenticationResponse();
+            jwtAuthRes.setToken(jwt);
+            jwtAuthRes.setRefreshToken(refreshTokenReq.getToken());
+
+            return jwtAuthRes;
+        }
+
+        return null;
     }
 
 }

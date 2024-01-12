@@ -1,6 +1,7 @@
 package com.backend.CrudApp.controller;
 
 import com.backend.CrudApp.dto.JwtAuthenticationResponse;
+import com.backend.CrudApp.dto.RefreshTokenRequests;
 import com.backend.CrudApp.dto.SigninRequest;
 import com.backend.CrudApp.dto.SignupRequest;
 import com.backend.CrudApp.entity.User;
@@ -28,5 +29,9 @@ public class AuthenticationController {
     public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest signinReq) {
         return ResponseEntity.ok(authService.signin(signinReq));
     }
-
+    
+    @PostMapping("/refresh")
+    public ResponseEntity<JwtAuthenticationResponse> refresh(@RequestBody RefreshTokenRequests refreshTokenReq) {
+        return ResponseEntity.ok(authService.refreshToken(refreshTokenReq));
+    }
 }
