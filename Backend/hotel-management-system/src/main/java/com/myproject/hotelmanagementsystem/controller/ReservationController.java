@@ -18,13 +18,13 @@ import com.myproject.hotelmanagementsystem.entity.Reservation;
 import com.myproject.hotelmanagementsystem.service.ReservationService;
 
 @RestController
-@RequestMapping("reserve")
+@RequestMapping("api/reserve")
 public class ReservationController {
     
     @Autowired
     private ReservationService reservationService;
 
-    @PostMapping
+    @PostMapping("/post")
     public ResponseEntity<String> reserveRoom(@RequestBody ReservationRequest reservationRequest) {
         String result = reservationService.reserveroom(
             reservationRequest.getGuestId(), reservationRequest.getRoomId(), reservationRequest.getTotalMembers()
@@ -32,7 +32,7 @@ public class ReservationController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/get")
     public ResponseEntity<List<Reservation>> getReservations() {
         return new ResponseEntity<>(reservationService.getReservedRooms(), HttpStatus.OK);
     }

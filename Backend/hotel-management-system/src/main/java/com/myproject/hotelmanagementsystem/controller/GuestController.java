@@ -19,33 +19,33 @@ import com.myproject.hotelmanagementsystem.exception.InvalidSearchException;
 import com.myproject.hotelmanagementsystem.service.GuestService;
 
 @RestController
-@RequestMapping("/guest")
+@RequestMapping("api/guest")
 public class GuestController {
     
     @Autowired
     private GuestService guestService;
 
-    @PostMapping
+    @PostMapping("/post")
     public ResponseEntity<String> createGuest(@RequestBody Guest guest) {
         return new ResponseEntity<>(guestService.addGuest(guest), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/get")
     public ResponseEntity<List<Guest>> getAllGuests() {
         return new ResponseEntity<>(guestService.getAllGuests(), HttpStatus.OK);
     }
 
-    @GetMapping("/{guestId}")
+    @GetMapping("/get/{guestId}")
     public ResponseEntity<Guest> getGuestById(@PathVariable Long guestId) {
         return new ResponseEntity<>(guestService.getGuestById(guestId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{guestId}")
+    @DeleteMapping("/delete/{guestId}")
     public ResponseEntity<String> deleteGuest(@PathVariable Long guestId) {
         return new ResponseEntity<>(guestService.deleteGuest(guestId), HttpStatus.OK);
     }
 
-    @PutMapping("/{guestId}")
+    @PutMapping("/put/{guestId}")
     public ResponseEntity<Guest> updateGuests(@PathVariable Long guestId, @RequestBody Guest guest) throws InvalidSearchException {
         return new ResponseEntity<>(guestService.updateGuest(guestId, guest), HttpStatus.OK);
     }

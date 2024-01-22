@@ -17,18 +17,18 @@ import com.myproject.hotelmanagementsystem.entity.Room;
 import com.myproject.hotelmanagementsystem.service.RoomService;
 
 @RestController
-@RequestMapping("/room")
+@RequestMapping("api/room")
 public class RoomController {
 
     @Autowired
     private RoomService roomService;
 
-    @PostMapping
+    @PostMapping("/post")
     public ResponseEntity<String> createRoom(@RequestBody Room room) {
         return new ResponseEntity<>(roomService.createRoom(room), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/get")
     public ResponseEntity<List<Room>> getAllRooms() {
         return new ResponseEntity<>(roomService.getAllRooms(), HttpStatus.OK);
     }
@@ -38,7 +38,7 @@ public class RoomController {
         return new ResponseEntity<>(roomService.getFreeRooms(), HttpStatus.OK);
     }
 
-    @PutMapping("/{roomId}")
+    @PutMapping("put/{roomId}")
     public ResponseEntity<Room> changeRoomStatus(@PathVariable Long roomId, @RequestBody Room room) {
         return new ResponseEntity<>(roomService.changeStatus(roomId, room), HttpStatus.OK);
     }
